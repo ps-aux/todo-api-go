@@ -18,7 +18,7 @@ jobs:
             - ~/go/pkg
       - run:
           name: Build app
-          command: ./build
+          command: ./build.sh
       - run:
           name: Build Docker image
           command: docker build . -t foo # TODO
