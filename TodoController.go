@@ -1,9 +1,9 @@
 package main
 
 import (
+	"encoding/json"
 	"github.com/gorilla/mux"
 	"net/http"
-	"encoding/json"
 )
 
 func initTodoApi(router *mux.Router, repo *TodoRepo) {
