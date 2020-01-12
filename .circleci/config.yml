@@ -1,0 +1,26 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: circleci/golang:1.13.6-stretch
+    steps:
+      - checkout
+      - restore_cache:
+          key: go-deps-{{ checksum "go.sum" }}
+      - run:
+          name: Prepare
+          command: go mod tidy
+      - save_cache:
+          key: go-deps-{{ checksum "go.sym" }}
+          paths:
+            - ~/go/pkg
+      - run:
+          name: Build app
+          command: go build
+
+workflows:
+  version: 2
+  all:
+    jobs:
+      - build
